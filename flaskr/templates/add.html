@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Settler</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="../static/formgen.js"></script>
+</head>
+
+<body>
+    <h1>Settler</h1> 
+    <br>
+    <form action="/calc" method="POST">
+        <div class="form_container">
+
+            <!-- Form for the target location + the  user parameters -->
+            <label for="target_address" class="fb-text-label"><h4>Search near…</h4></label>
+            <input type="text" class="form-control" name="target_address" id="target_address" required="required" maxlength="140" placeholder="25 Union Square West, New York City, NY 10003">
+            <h4>…and I want to be…</h4>
+<!--             <label for="params_num">Number of parameters:</label>
+            <select name = "params-count" id = "params-count">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select> -->
+            <div class="entry1">
+                <div class="field-closer_or_further">
+                    <div class="radio-group">
+                        <div class="radio-inline">
+                            <input name="req_type_1" id="closer_than" required="required" aria-required="true" value="closer_than" type="radio">
+                            <label for="closer_or_further-0">closer than</label>
+                        </div>
+                        <div class="radio-inline">
+                            <input name="req_type_1" id="further_than" required="required" aria-required="true" value="further_than" type="radio">
+                            <label for="closer_or_further-1">further than</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="slidecontainer">
+                  <input type="range" min="-3" max="3" value="0" class="slider" id="distRange_1" name = "dist_1"><span id="dist_1_value"></span> miles
+                </div>
+                <div class="field-search_term">
+                    <label for="establishment_type" class="fb-text-label">from a: </label>
+                    <input type="text" class="form-control" name="search_term_1" maxlength="40" id="search_term_1" placeholder="gym, restaurant, laundry…">
+                </div>  
+            </div>
+            <br>
+            <div class="entry2">
+                <div class="field-closer_or_further">
+                    <div class="radio-group">
+                        <div class="radio-inline">
+                            <input name="req_type_2" id="closer_than" required="required" aria-required="true" value="closer_than" type="radio">
+                            <label for="closer_or_further-0">closer than</label>
+                        </div>
+                        <div class="radio-inline">
+                            <input name="req_type_2" id="further_than" required="required" aria-required="true" value="further_than" type="radio">
+                            <label for="closer_or_further-1">further than</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="slidecontainer">
+                  <input type="range" min="-3" max="3" value="0" class="slider" id="dist_2" name = "dist_2"><span id="dist_2_value"></span> miles
+                </div>
+                <div class="field-search_term">
+                    <label for="establishment_type" class="fb-text-label">from a: </label>
+                    <input type="text" class="form-control" name="search_term_2" maxlength="40" id="search_term_2" placeholder="gym, restaurant, laundry…">
+                </div>  
+            </div>
+            <!-- End of repeated form bit -->
+
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script type="text/javascript">
+        function getTrueVal(slider){
+            var trueVal = parseInt(slider.value);
+            trueVal = Math.pow(2, trueVal)
+            return trueVal;
+        }
+        var slider1 = document.getElementById("distRange_1");
+        var output1 = document.getElementById("dist_1_value");
+
+        var slider2 = document.getElementById("dist_2");
+        var output2 = document.getElementById("dist_2_value");
+
+
+        output1.innerHTML = getTrueVal(slider1);
+        output2.innerHTML = getTrueVal(slider1);
+        slider1.oninput = function() {
+          output1.innerHTML = getTrueVal(slider1);
+        }
+        slider2.oninput = function() {
+          output2.innerHTML = getTrueVal(slider2);
+        }
+    </script>
+</body>
+</html>

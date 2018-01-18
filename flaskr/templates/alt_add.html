@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Settler</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="../static/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+
+	<div class="bg-contact2" style="background-image: url('../static/images/bg-01.jpg');">
+		<div class="container-contact2">
+			<div class="wrap-contact2">
+				<form class="contact2-form validate-form" action="/calc" method="POST">
+					<span class="contact2-form-title">
+						Settler
+					</span>
+
+					<label for="target_address" class="fb-text-label"><h4>Search near…</h4></label>
+           				<input type="text" class="form-control" name="target_address" id="target_address" required="required" maxlength="140" placeholder="25 Union Square West, New York City, NY 10003">
+
+					<div class="wrap-input2 validate-input" data-validate="Please choose an option">
+						<div class="radio-group">
+			                        <div class="radio-inline">
+			                            <input name="req_type_1" id="closer_than" required="required" aria-required="true" value="closer_than" type="radio">
+			                            <label for="closer_or_further-0">closer than</label>
+			                        </div>
+			                        <div class="radio-inline">
+			                            <input name="req_type_1" id="further_than" required="required" aria-required="true" value="further_than" type="radio">
+			                            <label for="closer_or_further-1">further than</label>
+			                        </div>
+					</div>
+
+					<div class="wrap-input2">
+						<div class="slidecontainer">
+				                  <input type="range" min="-3" max="3" value="0" class="slider" id="distRange_1" name = "dist_1"><br><span id="dist_1_value"></span> mile(s)
+				                </div>
+					</div>
+					<div class="wrap-input2 validate-input" data-validate = "Search term is required">
+						<div class="field-search_term">
+				                    <label for="establishment_type" class="fb-text-label">from a: </label>
+				                    <input type="text" class="form-control" name="search_term_1" maxlength="40" id="search_term_1" placeholder="gym, restaurant, laundry…">
+				                </div>  
+					</div>
+
+					<div class="wrap-input2 validate-input" data-validate="Please choose an option">
+						<div class="radio-group">
+			                        <div class="radio-inline">
+			                            <input name="req_type_2" id="closer_than" required="required" aria-required="true" value="closer_than" type="radio">
+			                            <label for="closer_or_further-0">closer than</label>
+			                        </div>
+			                        <div class="radio-inline">
+			                            <input name="req_type_2" id="further_than" required="required" aria-required="true" value="further_than" type="radio">
+			                            <label for="closer_or_further-1">further than</label>
+			                        </div>
+					</div>
+
+					<div class="wrap-input2">
+						<div class="slidecontainer">
+				                  <input type="range" min="-3" max="3" value="0" class="slider" id="distRange_2" name = "dist_2"><br><span id="dist_2_value"></span> mile(s)
+				                </div>
+					</div>
+
+					<div class="wrap-input2 validate-input" data-validate = "Search term is required">
+						<div class="field-search_term">
+				                    <label for="establishment_type" class="fb-text-label">from a: </label>
+				                    <input type="text" class="form-control" name="search_term_2" maxlength="40" id="search_term_2" placeholder="gym, restaurant, laundry…">
+				                </div>  
+					</div>
+
+
+
+					<div class="container-contact2-form-btn">
+						<div class="wrap-contact2-form-btn">
+							<div class="contact2-form-bgbtn"></div>
+							<button class="contact2-form-btn">
+								Find Somewhere Good
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+<!--===============================================================================================-->
+	<script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../static/vendor/bootstrap/js/popper.js"></script>
+	<script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../static/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../static/js/main.js"></script>
+
+
+	<script>
+	        var slider1 = document.getElementById("distRange_1");
+        var output1 = document.getElementById("dist_1_value");
+
+        var slider2 = document.getElementById("distRange_2");
+        var output2 = document.getElementById("dist_2_value");
+
+
+        output1.innerHTML = getTrueVal(slider1);
+        output2.innerHTML = getTrueVal(slider2);
+        slider1.oninput = function() {
+          output1.innerHTML = getTrueVal(slider1);
+        }
+        slider2.oninput = function() {
+          output2.innerHTML = getTrueVal(slider2);
+        }
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-23581568-13');
+	function getTrueVal(slider){
+		var trueVal = parseInt(slider.value);
+		trueVal = Math.pow(2, trueVal)
+		return trueVal;
+	}
+
+	</script>
+
+</body>
+</html>
